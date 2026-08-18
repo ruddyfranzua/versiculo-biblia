@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Versículos de la Biblia</title>
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    padding:15px;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#A7D08C;
+    font-family:Cambria,Georgia,"Times New Roman",serif;
+}
+
+body::before,body::after{
+    content:"";
+    position:fixed;
+    top:50%;
+    transform:translateY(-50%);
+    width:300px;
+    height:850px;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:100% 100%;
+    opacity:.88;
+    z-index:1;
+    pointer-events:none;
+}
+
+body::before{
+    left:15px;
+    background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi5fviOkYhpZtrROCT4Yyu4ky6_Si7Hz2iQsayIY6PLQ&s=10');
+}
+
+body::after{
+    right:15px;
+    background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Lc6yBmvAUq3BRKF8-AdPVhEIevBtOWIbdNKwLu7dvA&s=10');
+}
+
+.contenedor{
+    width:100%;
+    max-width:700px;
+    padding:35px 30px;
+    background:white;
+    border:1px solid #b7b7b7;
+    border-radius:8px;
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+    position:relative;
+    z-index:2;
+}
+
+h1{
+    margin:0 0 6px;
+    text-align:center;
+    font-size:2.3em;
+    font-weight:normal;
+    letter-spacing:1px;
+    color:#245522;
+}
+
+.subtitulo{
+    margin-bottom:28px;
+    text-align:center;
+    color:#777;
+    font-size:.95em;
+    font-style:italic;
+}
+
+.cuadro-versiculo{
+    margin-bottom:12px;
+    padding:16px 20px;
+    background:linear-gradient(135deg,#fff,#f7faf6);
+    border:1px solid #d4ddd2;
+    border-radius:8px;
+    box-shadow:0 2px 5px rgba(50,90,50,.05);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.cuadro-versiculo:hover{
+    background:#f0f7ee;
+    border-color:#8db68a;
+    transform:translateY(-2px);
+    box-shadow:0 4px 10px rgba(60,100,60,.12);
+}
+
+.numero-versiculo{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#315f3a;
+    font-size:1.18em;
+    font-weight:bold;
+}
+
+.numero-versiculo::before{
+    content:"✦";
+    margin-right:8px;
+    color:#6c9c67;
+    font-size:.85em;
+}
+
+.indicador{
+    color:#7c8c80;
+    font-size:.78em;
+    font-weight:normal;
+}
+
+.texto-versiculo{
+    display:none;
+    margin-top:12px;
+    padding:12px 5px 3px;
+    border-top:1px dotted #b9c6b7;
+    color:#26352a;
+    font-size:1.12em;
+    line-height:1.65;
+}
+
+.principal{
+    background:linear-gradient(135deg,#eef8e9,#e4f2de);
+    border:2px solid #5b9b55;
+    box-shadow:0 4px 12px rgba(72,120,65,.15);
+    cursor:default;
+}
+
+.principal:hover{
+    background:linear-gradient(135deg,#eef8e9,#e4f2de);
+    transform:none;
+}
+
+.principal .numero-versiculo{
+    color:#1f6529;
+    font-size:1.2em;
+}
+
+.principal .texto-versiculo{
+    display:block;
+    color:#214a27;
+    font-size:1.18em;
+    line-height:1.7;
+    border-top:1px solid #a9c8a3;
+}
+
+button{
+    display:block;
+    margin:28px auto 0;
+    padding:13px 30px;
+    background:linear-gradient(135deg,#4f984f,#367b3a);
+    color:white;
+    border:0;
+    border-radius:5px;
+    box-shadow:0 3px 7px rgba(50,90,50,.2);
+    font-family:inherit;
+    font-size:1.05em;
+    cursor:pointer;
+}
+
+button:hover{background:#367b3a}
+
+#contenido-oculto{
+    display:none;
+    margin-top:25px;
+    padding:20px;
+    background:#f7faf6;
+    border:1px dashed #5b9b55;
+    border-radius:6px;
+}
+
+h3{
+    margin:0 0 8px;
+    color:#2c6933;
+    font-size:1.2em;
+}
+
+p{
+    margin:0 0 16px;
+    color:#344238;
+    font-size:1.05em;
+    line-height:1.6;
+}
+
+p:last-child{margin-bottom:0}
+
+@media(max-width:1200px){
+    body::before,body::after{
+        width:240px;
+        height:750px;
+    }
+}
+
+@media(max-width:1050px){
+    body::before,body::after{display:none}
+    .contenedor{
+        max-width:700px;
+        padding:25px 20px;
+    }
+}
+
+@media(max-width:600px){
+    body{padding:8px}
+    .contenedor{padding:22px 15px}
+    h1{font-size:1.8em}
+    .subtitulo{font-size:.9em}
+    .cuadro-versiculo{padding:14px 15px}
+    .numero-versiculo{font-size:1.05em}
+    .texto-versiculo{font-size:1.05em}
+    button{width:100%}
+}
+</style>
+</head>
+
+<body>
+<div class="contenedor">
+    <h1>Salmos 119</h1>
+    <div class="subtitulo">Presiona sobre cada número para revelar su mensaje</div>
+
+    <div class="cuadro-versiculo" onclick="alternarVersiculo(this)">
+        <div class="numero-versiculo">Versículo 32 <span class="indicador">▶ Revelar</span></div>
+        <div class="texto-versiculo">Por el camino de tus mandamientos correré, cuando ensanches mi corazón.</div>
+    </div>
+
+    <div class="cuadro-versiculo" onclick="alternarVersiculo(this)">
+        <div class="numero-versiculo">Versículo 33 <span class="indicador">▶ Revelar</span></div>
+        <div class="texto-versiculo">Enséñame, oh Jehová, el camino de tus estatutos, y lo guardaré hasta el fin.</div>
+    </div>
+
+    <div class="cuadro-versiculo" onclick="alternarVersiculo(this)">
+        <div class="numero-versiculo">Versículo 34 <span class="indicador">▶ Revelar</span></div>
+        <div class="texto-versiculo">Dame entendimiento, y guardaré tu ley, y la cumpliré de todo corazón.</div>
+    </div>
+
+    <div class="cuadro-versiculo principal">
+        <div class="numero-versiculo">Versículo 35</div>
+        <div class="texto-versiculo"><strong>Guíame por la senda de tus mandamientos, porque en ella tengo mi delicia.</strong></div>
+    </div>
+
+    <div class="cuadro-versiculo" onclick="alternarVersiculo(this)">
+        <div class="numero-versiculo">Versículo 36 <span class="indicador">▶ Revelar</span></div>
+        <div class="texto-versiculo">Inclina mi corazón a tus testimonios, y no a la avaricia.</div>
+    </div>
+
+    <div class="cuadro-versiculo" onclick="alternarVersiculo(this)">
+        <div class="numero-versiculo">Versículo 37 <span class="indicador">▶ Revelar</span></div>
+        <div class="texto-versiculo">Aparta mis ojos, que no vean la vanidad; vivifícame en tu camino.</div>
+    </div>
+
+    <div class="cuadro-versiculo" onclick="alternarVersiculo(this)">
+        <div class="numero-versiculo">Versículo 38 <span class="indicador">▶ Revelar</span></div>
+        <div class="texto-versiculo">Confirma tu palabra a tu siervo, que te teme.</div>
+    </div>
+
+    <button onclick="mostrarInfo()">Ver reflexión y oración</button>
+
+    <div id="contenido-oculto">
+        <h3>Reflexión</h3>
+        <p>Este versículo nos recuerda que la verdadera felicidad y paz no se encuentran en hacer nuestra propia voluntad, sino en seguir los caminos que Dios ha trazado para nosotros. Al pedirle que nos guíe, reconocemos que su dirección es un deleite y una protección para nuestra vida.</p>
+
+        <h3>Oración</h3>
+        <p>Señor, te pido que dirijas mis pasos hoy. No permitas que me desvíe de lo que es correcto. Pon en mí el deseo constante de obedecerte y haz que encuentre alegría y satisfacción en cumplir tu palabra. Amén.</p>
+    </div>
+</div>
+
+<script>
+function alternarVersiculo(elemento){
+    var texto=elemento.querySelector(".texto-versiculo");
+    var indicador=elemento.querySelector(".indicador");
+
+    if(texto.style.display==="block"){
+        texto.style.display="none";
+        indicador.textContent="▶ Revelar";
+    }else{
+        texto.style.display="block";
+        indicador.textContent="▼ Ocultar";
+    }
+}
+
+function mostrarInfo(){
+    var info=document.getElementById("contenido-oculto");
+    if(info.style.display==="none" || info.style.display===""){
+        info.style.display="block";
+    }else{
+        info.style.display="none";
+    }
+}
+</script>
+</body>
+</html>
